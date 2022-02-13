@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  
+<head>
+  
+  <title>Bawarchi: Your virtual Kitchen Assistant</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Select ingredients you have in your kitchen and I'll tell you meals that can be made from them.">
+  <link href="https://fonts.googleapis.com/css2?family=PT+Sans:ital@1&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="style/index.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  
+</head>
+
+<body>
+
+ <div class="container text-center">
+  
+  <img src="media/bawarchi.png" class="img-responsive text-center title" />
+  <h4 class="text-center subtitle">Your Virtual Kitchen Assistant</h4>
+  
+  <button type="button" class="btn btn-primary btn-lg text-center selectIngs" onclick=redirect()>Select Ingredients</button>
+  <br><br>
+  <p class="text-large description">Select ingredients you have in your kitchen and I'll tell you meals that can be made from them.</p>
+ </div>
+ 
+ <footer>
+<div class="developer">
+  <p>Developed by <a id="dev" href="https://api.whatsapp.com/send?phone=919428588428">Gautam Mehta</a></p>
+  </div>
+<span class="poweredBy fixed-bottom">Powered by <a href="https://000webhost.com" style="color: #e8e0f3;font-size:15px">000webhost</a></span>
+</footer>
+
+<script>
+    function redirect() {
+        window.location.href = "Ingredients.php";
+		}
+</script>
+</body>
+</html>

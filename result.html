@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<link rel="stylesheet" type="text/css" href="style/result.css"/>
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@1,700&display=swap" rel="stylesheet">
+<title>Perfect Meal</title>
+
+</head>
+
+<body>
+    <div class="container-fluid">
+        
+        <div id="displayArea"></div>
+        
+    <div class="row footbar">
+        <button onclick="showHomeContent()" class="col footbarBtn selected" id="home"><i class="fa fa-home white"></i></button>
+        <button onclick="showVideoContent()" class="col footbarBtn" id="video"><i class="fab fa-youtube"></i></button>
+        <button onclick="showInfoContent()" class="col footbarBtn" id="info"><i class="fa fa-info"></i></button>
+        <button onclick="toggleDarkMode()" class="col darkmodeBtn"><i class="fa fa-adjust"></i></button>
+    </div>
+    </div>
+    
+    <div class="poweredBy"><a href="https://000webhost.com"><img style="width:0px;" src="media/000webhostBanner.png" /></a></div>
+    
+    <script>
+        function showHomeContent() {
+            $("#video").removeClass("selected");
+            $("#info").removeClass("selected");
+            $("#home").addClass("selected");
+            
+            $("#displayArea").html(homeHtml);
+            setItem(active);
+        }
+        
+        function showVideoContent() {
+            $("#home").removeClass("selected");
+            $("#info").removeClass("selected");
+            $("#video").addClass("selected");
+            $("#displayArea").html(videoHtml);
+            //$("#loaderGif").show()
+            $("#ad1").html("<a id='adLink' href='https://api.whatsapp.com/send?phone=919428588428'>Click to advertise here</a>");
+            $("#ad2").html("<a id='adLink' href='https://api.whatsapp.com/send?phone=919428588428'>Click to advertise here</a>");
+            videoDiv = $("#videoDiv");
+            vidPre='<iframe id="ytvideo" class="embed-responsive-item" src="';
+	vidSuf='" allowfullscreen></iframe>';
+	$("#ytvideo").remove()
+    videoDiv.append(vidPre+videoSrc+vidSuf);
+   // $("#loaderGif").hide()
+     }
+        
+        function showInfoContent() {
+            $("#video").removeClass("selected");
+            $("#home").removeClass("selected");
+            $("#info").addClass("selected");
+            $("#displayArea").html("<h1>Info Page</h1><br><br><h3>Coming soon...</h3>");
+        }
+        
+function shuffle(array) {
+  var currentIndex = array.length, temporaryValue, randomIndex;
+
+  // While there remain elements to shuffle...
+  while (0 !== currentIndex) {
+
+    // Pick a remaining element...
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex -= 1;
+
+    // And swap it with the current element.
+    temporaryValue = array[currentIndex];
+    array[currentIndex] = array[randomIndex];
+    array[randomIndex] = temporaryValue;
+  }
+
+  return array;
+}
+function setItem(item) {
+    
+	var healthRating = ["Healthy", "Intermediate", "Less Healthy"];
+	var extras = ["Paav", "Bread", "Puri", "Cheese", "Butter", "Pizza Base", "Dosa/Uttapam Batter"];
+
+
+	document.getElementById("mealName").innerText = item[0];
+	
+	if (item[1] == 1) {
+	    document.getElementById('star1').className = "fa fa-star checked";
+	    document.getElementById('star2').className = "fa fa-star checked";
+	    document.getElementById('star3').className = "fa fa-star checked";
+	}
+	if (item[1]==2) {
+	    document.getElementById('star1').className = "fa fa-star checked";
+	    document.getElementById('star2').className = "fa fa-star checked";
+	    document.getElementById('star3').className = "fa fa-star";
+	}
+	if (item[1]==3) {
+	    document.getElementById('star1').className = "fa fa-star checked";
+	    document.getElementById('star2').className = "fa fa-star";
+	    document.getElementById('star3').className = "fa fa-star";
+	}	
+
+	var imgSrc = item[6];
+
+
+
+	if (item.length > 8) {
+
+		var extraItems = [];
+		eIngs = item[7];
+		eIngs.forEach(function(val, i, arr) {
+			extraItems.push(extras[val.slice(1)]);
+		});
+		var extraPara = extraItems;
+		videoSrc = item[8];
+	} else {
+		var extraPara = "---";
+		videoSrc = item[7];
+	}
+
+    document.getElementById("image").src = imgSrc;
+	document.getElementById("p2").innerText = extraPara;
+	
+	active = item;
+
+}
+
+function change() {
+	if (index + 1 != finalList.length) {
+		var newItem = finalList[index + 1];
+		index++;
+		setItem(newItem);
+	} else {
+		alert("Sorry! No more meals found.");
+	}
+
+}
+
+function toggleDarkMode() {
+   var element = document.body;
+   element.classList.toggle("dark-mode");
+}
+
+
+var finalList = JSON.parse(localStorage.getItem("possibleMeals"));
+
+if (finalList === null) {
+	window.location.href = "index.html";
+}
+
+shuffle(finalList);
+
+
+displayItem = finalList[0];
+index = 0;
+active = displayItem;
+
+     
+homeHtml = "<h1 id='heading'>The Perfect Meal For today is</h1> <br> <img id='image' /> <br> <h2 id='mealName'></h2><div class='attribute1'><p class='attribName'>Health Status:</p><div id='p1' class='attributes'><span id='star1' class='temp'> </span><span id='star2' class='temp'> </span><span id='star3' class='temp'> </span></div></div><div class='attribute2'><p class='attribName'>From outside:</p><p id='p2' class='attributes'></p></div><button id='else' onclick=change()>Tell me something else</button>";
+
+videoHtml = '<div id="ad1" class="ads"></div><br><br><div style="text-align: center;" id="videoDiv" class="embed-responsive embed-responsive-16by9"><img id="loaderGif" src="media/videoLoading.gif" /><iframe id="ytvideo" class="embed-responsive-item" src="https://www.youtube.com/embed/dYvr9RPfxlM?" allowfullscreen></iframe></div><br><br><div id="ad2" class="ads"></div>';
+
+        //Home page selected by default
+        showHomeContent();
+        
+    </script>
+    
+    <script>
+
+</script>
+
+</body>
+</html>

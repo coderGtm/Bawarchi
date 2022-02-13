@@ -1,0 +1,60 @@
+body {
+    margin: 0;
+}
+      .container{
+background-image: linear-gradient(
+      rgba(0, 0, 0, 0.5),
+      rgba(0, 0, 0, 0.5)
+    ), url("../media/cooking.jpg");
+background-repeat: no-repeat;
+background-attachment: fixed;
+background-size: cover;
+height: 100vh;
+width: 100%;
+}
+      
+      
+      .title {
+          margin-top: 30vh;
+          margin-left: auto;
+          margin-right: auto;
+          border-radius: 5px;
+      }
+      .subtitle {
+          color: white;
+      }
+      .selectIngs {
+          margin-top: 5%;
+      }
+      .description {
+          font-size: 125%;
+          color: white;
+          font-family: 'PT Sans', sans-serif;
+          text-shadow: 5px 5px 8px #7b58ae;
+      }
+      .developer {
+          font-family: 'Indie Flower', cursive;
+          color: white;
+      }
+      #dev {
+          color: #19ff5b;
+      }
+      #loaderGif {
+          width: 170px;
+          height: 170px;
+      }
+      footer {
+          display: block;
+   background: black;
+   text-align: center;
+      }
+      .poweredBy {
+          color: #e8e0f3;
+          position:relative;
+          background-color: black;
+          /*margin-left: -75px;
+          bottom: 130px;
+          left: 0px;
+          -ms-transform: rotate(90deg); /* IE 9 * /
+          transform: rotate(90deg);*/
+      }
